@@ -1,17 +1,17 @@
 import sys
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import QApplication, QPushButton
 from PyQt5.QtGui import QPainter, QColor
 from random import randint
 from PyQt5 import QtWidgets
-from PyQt5 import uic
 
-Form, Window = uic.loadUiType("Ui.ui")
-
-class Ui(QtWidgets.QDialog, Form):
+class Widget(QtWidgets.QDialog):
     def __init__(self):
-        super(Ui, self).__init__()
-        self.setupUi(self)
+        super().__init__()
         self.setWindowTitle('Git и желтые окружности')
+        self.setGeometry(500, 500, 500, 500)
+        self.pushButton = QPushButton('Нажать', self)
+        self.pushButton.resize(100, 30)
+        self.pushButton.move(200, 240)
         self.pushButton.clicked.connect(self.draw_circle)
         self.flag = False
         self.show()
@@ -37,5 +37,5 @@ class Ui(QtWidgets.QDialog, Form):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    ex = Ui()
+    ex = Widget()
     sys.exit(app.exec_())
